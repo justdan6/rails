@@ -248,6 +248,15 @@ module Rails
         end
       end
 
+      def test_cssbundling_includes_node
+        run_generator ["--css=tailwind", "--javascript=esbuild"]
+
+        test_common_config
+        assert_devcontainer_json_file do |devcontainer_json|
+          assert_includes devcontainer_json["features"].keys, "ghcr.io/devcontainers/features/node:1"
+        end
+      end
+
       def test_redis_option_default
         run_generator
 

@@ -270,7 +270,7 @@ module Rails
         system_test: depends_on_system_test?,
         active_storage: !options[:skip_active_storage],
         dev: options[:dev],
-        node: using_node?,
+        node: using_node? || css_gemfile_entry.name == "cssbundling-rails",
         app_name: app_name,
         skip_solid: options[:skip_solid]
       }
